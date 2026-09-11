@@ -1,0 +1,56 @@
+{
+  "run_at_utc": "2026-09-11T08:40:37Z",
+  "ok": true,
+  "documents": [
+    {
+      "name": "developer-program-license-agreement",
+      "ok": true,
+      "error": null
+    },
+    {
+      "name": "testflight-terms",
+      "ok": true,
+      "error": null
+    },
+    {
+      "name": "app-store-review-guidelines",
+      "ok": true,
+      "error": null
+    },
+    {
+      "name": "human-interface-guidelines",
+      "ok": true,
+      "error": null
+    },
+    {
+      "name": "sign-in-with-apple-guidelines",
+      "ok": true,
+      "error": null
+    },
+    {
+      "name": "xcode-sla",
+      "ok": true,
+      "error": null
+    },
+    {
+      "name": "developer-agreement-pdf",
+      "ok": true,
+      "error": null
+    },
+    {
+      "name": "google-play-developer-terms",
+      "ok": true,
+      "error": null
+    },
+    {
+      "name": "google-play-content-policy",
+      "ok": true,
+      "error": null
+    },
+    {
+      "name": "google-play-developer-distribution-agreement",
+      "ok": true,
+      "error": null
+    }
+  ]
+}
