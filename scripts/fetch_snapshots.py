@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Fetch a fixed list of Apple App Store legal/policy pages, extract their
-main readable text (stripping nav/footer/script boilerplate), and write
-each one to a stable file path under snapshots/.
+Fetch a fixed list of Apple App Store and Google Play legal/policy pages,
+extract their main readable text (stripping nav/footer/script
+boilerplate), and write each one to a stable file path under snapshots/.
 
 This script is intentionally "dumb": it does no summarization or AI
 processing. It just gets a clean, comparable text snapshot of each page
@@ -35,6 +35,9 @@ from pypdf import PdfReader
 #                       client-side; the actual copy lives in a JSON
 #                       endpoint at /tutorials/data/<path>.json instead of
 #                       the server-rendered HTML
+#   "text"            - already-plain-text response (e.g. Google's
+#                       ".md.txt" doc endpoints), written out as-is
+#                       (whitespace-normalized) with no HTML/PDF parsing
 #
 # Note: the Apple Developer Program License Agreement is also linked from
 # https://developer.apple.com/programs/apple-developer-program-license-agreement/
@@ -86,6 +89,26 @@ DOCUMENTS = {
         "https://developer.apple.com/support/downloads/terms/apple-developer-agreement/",
         "snapshots/developer-agreement-pdf.md",
         "pdf-from-listing",
+    ),
+    "google-play-developer-terms": (
+        "https://developers.google.com/profile/terms.md.txt",
+        "snapshots/google-play-developer-terms.md",
+        "text",
+    ),
+    "google-play-content-policy": (
+        "https://developers.google.com/profile/content-policy.md.txt",
+        "snapshots/google-play-content-policy.md",
+        "text",
+    ),
+    "google-play-developer-distribution-agreement": (
+        # play.google/developer-distribution-agreement.html serves
+        # whatever language matches the requester's geo-IP (German for
+        # a German-hosted CI runner, say), which would make every daily
+        # diff pure translation noise. The /intl/en_us/ path pins it to
+        # English regardless of where the fetch runs from.
+        "https://play.google/intl/en_us/developer-distribution-agreement.html",
+        "snapshots/google-play-developer-distribution-agreement.md",
+        "html",
     ),
 }
 
@@ -157,6 +180,13 @@ def extract_text(html: str, url: str) -> str:
     # Collapse runs of blank lines so trivial whitespace churn doesn't
     # show up as a "change" week over week.
     text = re.sub(r"\n{3,}", "\n\n", text)
+    text = re.sub(r"[ \t]+\n", "\n", text)
+    return text.strip() + "\n"
+
+
+def extract_plain_text(raw: str) -> str:
+    """Normalize an already-plain-text response (no HTML/PDF to strip)."""
+    text = re.sub(r"\n{3,}", "\n\n", raw)
     text = re.sub(r"[ \t]+\n", "\n", text)
     return text.strip() + "\n"
 
@@ -243,6 +273,10 @@ def main() -> int:
             elif kind == "docc-json":
                 resp = fetch(url)
                 text = extract_docc_json_text(resp.json())
+                source_url = url
+            elif kind == "text":
+                resp = fetch(url)
+                text = extract_plain_text(resp.text)
                 source_url = url
             else:
                 resp = fetch(url)

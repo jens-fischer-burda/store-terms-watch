@@ -1,4 +1,4 @@
-name: Apple App Store terms watch - daily fetch
+name: Store terms watch - daily fetch
 
 on:
   schedule:

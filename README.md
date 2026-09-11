@@ -1,4 +1,4 @@
-# Apple App Store terms watch
+# Store terms watch
 
 Two independent jobs, split by concern:
 
@@ -37,6 +37,18 @@ Tracked documents:
    Apple publishes a new version, so the script re-parses the listing page
    on every run for a link matching `Apple-Developer-Agreement-*-English.pdf`
    rather than hardcoding a URL that would silently go stale.
+8. **Google Developer Program Terms of Service** — `snapshots/google-play-developer-terms.md`
+   Source: https://developers.google.com/profile/terms.md.txt
+   (already served as plain Markdown text, written out as-is)
+9. **Google Developer Program Content Policy** — `snapshots/google-play-content-policy.md`
+   Source: https://developers.google.com/profile/content-policy.md.txt
+   (same as above — plain Markdown text)
+10. **Google Play Developer Distribution Agreement** — `snapshots/google-play-developer-distribution-agreement.md`
+    Source: https://play.google/intl/en_us/developer-distribution-agreement.html
+    (the plain `.../developer-distribution-agreement.html` URL serves
+    whatever language matches the requester's geo-IP, which would turn
+    every daily diff into translation noise; the `/intl/en_us/` path
+    pins it to English regardless of where the fetch runs from)
 
 Not tracked, on purpose:
 
@@ -51,21 +63,21 @@ Not tracked, on purpose:
 Every snapshot file is plain extracted text (nav/footer/scripts stripped,
 or PDF/JSON text for the documents that need it), so `git diff` /
 `git log -p -- snapshots/<file>` gives a clean history of exactly what
-Apple changed and when.
+changed and when.
 
 ## One-time setup (this repo)
 
-1. **Add these files** (`.github/workflows/apple-terms-watch.yml`,
+1. **Add these files** (`.github/workflows/store-terms-watch.yml`,
    `scripts/`, `snapshots/`, this README) to the repo, on the default branch.
 
 2. **Allow the workflow to push commits back.**
    Repo Settings → Actions → General → "Workflow permissions" → select
    **"Read and write permissions"** → Save.
    (Without this, the daily commit of the updated snapshot will fail. No
-   other secrets are needed — the workflow only fetches public Apple
-   pages and commits with the automatic `GITHUB_TOKEN`.)
+   other secrets are needed — the workflow only fetches public pages and
+   commits with the automatic `GITHUB_TOKEN`.)
 
-3. **Test it manually**: Actions tab → "Apple App Store terms watch -
+3. **Test it manually**: Actions tab → "Store terms watch -
    daily fetch" → **Run workflow**. First run commits the initial
    baseline for all documents; every run after that only commits
    when the fetched text actually differs from what's in the repo.
@@ -81,7 +93,7 @@ This isn't a file in this repo — it's a Claude "scheduled task" (weekly,
 Mondays) that, each time it fires:
 
 1. Clones this repo fresh (public, no token needed).
-2. For each of the 7 snapshot files, finds the version from ~7 days ago
+2. For each of the 10 snapshot files, finds the version from ~7 days ago
    and diffs it against the current version.
 3. If anything changed, writes a short plain-English summary per changed
    document and emails it to jens.fischer@burda.com via Gmail.
@@ -104,7 +116,7 @@ editing this repo.
 
 ## How "changed" is decided
 
-`scripts/fetch_snapshots.py` re-downloads all three pages daily and
+`scripts/fetch_snapshots.py` re-downloads all tracked documents daily and
 overwrites the files in `snapshots/`, then the workflow commits only if
 `git status` shows a real difference — so the commit history is already
 a clean, deduplicated log of actual changes (no noise from identical daily
