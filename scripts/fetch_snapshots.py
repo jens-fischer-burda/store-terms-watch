@@ -52,32 +52,32 @@ from pypdf import PdfReader
 DOCUMENTS = {
     "developer-program-license-agreement": (
         "https://developer.apple.com/support/terms/apple-developer-program-license-agreement/",
-        "snapshots/developer-program-license-agreement.md",
+        "snapshots/appstore_developer-program-license-agreement.md",
         "html",
     ),
     "testflight-terms": (
         "https://www.apple.com/legal/internet-services/itunes/testflight/",
-        "snapshots/testflight-terms.md",
+        "snapshots/appstore_testflight-terms.md",
         "html",
     ),
     "app-store-review-guidelines": (
         "https://developer.apple.com/app-store/review/guidelines/",
-        "snapshots/app-store-review-guidelines.md",
+        "snapshots/appstore_review-guidelines.md",
         "html",
     ),
     "human-interface-guidelines": (
         "https://developer.apple.com/tutorials/data/design/human-interface-guidelines.json",
-        "snapshots/human-interface-guidelines.md",
+        "snapshots/appstore_human-interface-guidelines.md",
         "docc-json",
     ),
     "sign-in-with-apple-guidelines": (
         "https://developer.apple.com/sign-in-with-apple/usage-guidelines-for-websites-and-other-platforms/",
-        "snapshots/sign-in-with-apple-guidelines.md",
+        "snapshots/appstore_sign-in-with-apple-guidelines.md",
         "html",
     ),
     "xcode-sla": (
         "https://www.apple.com/legal/sla/docs/xcode.pdf",
-        "snapshots/xcode-sla.md",
+        "snapshots/appstore_xcode-sla.md",
         "pdf",
     ),
     "developer-agreement-pdf": (
@@ -87,17 +87,17 @@ DOCUMENTS = {
         # agreement, so it's re-discovered on every run instead of
         # hardcoded.
         "https://developer.apple.com/support/downloads/terms/apple-developer-agreement/",
-        "snapshots/developer-agreement-pdf.md",
+        "snapshots/appstore_developer-agreement-pdf.md",
         "pdf-from-listing",
     ),
     "google-play-developer-terms": (
         "https://developers.google.com/profile/terms.md.txt",
-        "snapshots/google-play-developer-terms.md",
+        "snapshots/playstore_developer-terms.md",
         "text",
     ),
     "google-play-content-policy": (
         "https://developers.google.com/profile/content-policy.md.txt",
-        "snapshots/google-play-content-policy.md",
+        "snapshots/playstore_content-policy.md",
         "text",
     ),
     "google-play-developer-distribution-agreement": (
@@ -107,7 +107,7 @@ DOCUMENTS = {
         # diff pure translation noise. The /intl/en_us/ path pins it to
         # English regardless of where the fetch runs from.
         "https://play.google/intl/en_us/developer-distribution-agreement.html",
-        "snapshots/google-play-developer-distribution-agreement.md",
+        "snapshots/playstore_developer-distribution-agreement.md",
         "html",
     ),
 }

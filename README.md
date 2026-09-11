@@ -11,25 +11,28 @@ Two independent jobs, split by concern:
 
 Tracked documents:
 
-1. **Apple Developer Program License Agreement** — `snapshots/developer-program-license-agreement.md`
+Snapshot files are prefixed `appstore_` or `playstore_` by which store the
+document belongs to:
+
+1. **Apple Developer Program License Agreement** — `snapshots/appstore_developer-program-license-agreement.md`
    Source: https://developer.apple.com/support/terms/apple-developer-program-license-agreement/
-2. **TestFlight Terms of Service** — `snapshots/testflight-terms.md`
+2. **TestFlight Terms of Service** — `snapshots/appstore_testflight-terms.md`
    Source: https://www.apple.com/legal/internet-services/itunes/testflight/
-3. **App Store Review Guidelines** — `snapshots/app-store-review-guidelines.md`
+3. **App Store Review Guidelines** — `snapshots/appstore_review-guidelines.md`
    Source: https://developer.apple.com/app-store/review/guidelines/
-4. **Human Interface Guidelines (landing page)** — `snapshots/human-interface-guidelines.md`
+4. **Human Interface Guidelines (landing page)** — `snapshots/appstore_human-interface-guidelines.md`
    Source: https://developer.apple.com/design/human-interface-guidelines/
    (this page is a client-rendered app with no server-side HTML text, so
    the script instead fetches the underlying JSON data endpoint at
    `/tutorials/data/design/human-interface-guidelines.json` and extracts
    the topic titles/descriptions from it — it only covers this landing
    page, not every individual HIG sub-page)
-5. **Sign in with Apple usage guidelines** — `snapshots/sign-in-with-apple-guidelines.md`
+5. **Sign in with Apple usage guidelines** — `snapshots/appstore_sign-in-with-apple-guidelines.md`
    Source: https://developer.apple.com/sign-in-with-apple/usage-guidelines-for-websites-and-other-platforms/
-6. **Xcode and Apple SDKs Agreement (PDF)** — `snapshots/xcode-sla.md`
+6. **Xcode and Apple SDKs Agreement (PDF)** — `snapshots/appstore_xcode-sla.md`
    Source: https://www.apple.com/legal/sla/docs/xcode.pdf
    (text extracted page-by-page from the PDF)
-7. **Apple Developer Agreement (PDF)** — `snapshots/developer-agreement-pdf.md`
+7. **Apple Developer Agreement (PDF)** — `snapshots/appstore_developer-agreement-pdf.md`
    Source: the English PDF linked from
    https://developer.apple.com/support/downloads/terms/apple-developer-agreement/
    The PDF's own filename embeds a revision date (e.g.
@@ -37,13 +40,13 @@ Tracked documents:
    Apple publishes a new version, so the script re-parses the listing page
    on every run for a link matching `Apple-Developer-Agreement-*-English.pdf`
    rather than hardcoding a URL that would silently go stale.
-8. **Google Developer Program Terms of Service** — `snapshots/google-play-developer-terms.md`
+8. **Google Developer Program Terms of Service** — `snapshots/playstore_developer-terms.md`
    Source: https://developers.google.com/profile/terms.md.txt
    (already served as plain Markdown text, written out as-is)
-9. **Google Developer Program Content Policy** — `snapshots/google-play-content-policy.md`
+9. **Google Developer Program Content Policy** — `snapshots/playstore_content-policy.md`
    Source: https://developers.google.com/profile/content-policy.md.txt
    (same as above — plain Markdown text)
-10. **Google Play Developer Distribution Agreement** — `snapshots/google-play-developer-distribution-agreement.md`
+10. **Google Play Developer Distribution Agreement** — `snapshots/playstore_developer-distribution-agreement.md`
     Source: https://play.google/intl/en_us/developer-distribution-agreement.html
     (the plain `.../developer-distribution-agreement.html` URL serves
     whatever language matches the requester's geo-IP, which would turn
