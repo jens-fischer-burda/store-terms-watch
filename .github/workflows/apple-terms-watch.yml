@@ -1,0 +1,42 @@
+name: Apple App Store terms watch - daily fetch
+
+on:
+  schedule:
+    # 03:00 UTC every day. Pure fetch + commit - no email, no AI, no
+    # secrets required. A separate weekly Claude scheduled task reads
+    # this repo's history and sends the summary email.
+    - cron: "0 3 * * *"
+  workflow_dispatch: {} # lets you trigger a run manually from the Actions tab, for testing
+
+permissions:
+  contents: write # needed so the workflow can commit the updated snapshots back
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Fetch current Apple documents
+        run: python scripts/fetch_snapshots.py
+
+      - name: Commit updated snapshots (only if something changed)
+        run: |
+          if [ -n "$(git status --porcelain -- snapshots/)" ]; then
+            git config user.name "apple-terms-watch-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add snapshots/
+            git commit -m "Daily snapshot $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "No changes to commit."
+          fi
