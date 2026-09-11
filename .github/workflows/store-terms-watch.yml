@@ -26,17 +26,31 @@ jobs:
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
 
-      - name: Fetch current Apple documents
+      - name: Fetch current documents
+        id: fetch
+        continue-on-error: true # let the commit step below run even on failure, so today's failure still gets recorded in status/last-run.json
         run: python scripts/fetch_snapshots.py
 
-      - name: Commit updated snapshots (only if something changed)
+      - name: Commit updated snapshots and status
         run: |
-          if [ -n "$(git status --porcelain -- snapshots/)" ]; then
+          # status/last-run.json changes every run (it records today's
+          # success/failure per document), so this always commits - that's
+          # what lets the weekly summary job see fetch failures from git
+          # history alone, without needing network access to the GitHub
+          # Actions API. snapshots/ still only changes when Apple/Google's
+          # actual text does.
+          if [ -n "$(git status --porcelain -- snapshots/ status/)" ]; then
             git config user.name "apple-terms-watch-bot"
             git config user.email "actions@users.noreply.github.com"
-            git add snapshots/
+            git add snapshots/ status/
             git commit -m "Daily snapshot $(date -u +%Y-%m-%d)"
             git push
           else
             echo "No changes to commit."
           fi
+
+      - name: Fail the run if the fetch step failed
+        if: steps.fetch.outcome == 'failure'
+        run: |
+          echo "Fetch step failed - see 'Fetch current documents' step output above and status/last-run.json for details." >&2
+          exit 1

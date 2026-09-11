@@ -126,6 +126,24 @@ a clean, deduplicated log of actual changes (no noise from identical daily
 re-fetches). The weekly Claude job then just diffs "state ~7 days ago" vs
 "now" over that history.
 
+## How fetch failures are surfaced
+
+Every run also writes `status/last-run.json` — which document(s) fetched
+successfully, which failed and why, and the run timestamp — and, unlike
+`snapshots/`, this file is committed on every single run, whether or not
+anything changed. That gives two independent signals for a failed fetch:
+
+1. **The GitHub Actions run itself fails** (red ❌ in the
+   [Actions tab](https://github.com/jens-fischer-burda/store-terms-watch/actions)):
+   the fetch step is allowed to fail without immediately killing the job
+   (so the commit step below still runs), but a final step re-fails the
+   whole run afterward if it did. If your GitHub notification settings
+   have Actions failures enabled, this triggers an email automatically.
+2. **The weekly Claude summary email** reads `status/last-run.json`'s
+   git history for the last 7 days (via `git log`/`git show` — no network
+   access needed) and reports any day that had `"ok": false`, alongside
+   the content-change summary.
+
 ## Adding another document later
 
 Add an entry to the `DOCUMENTS` dict in `scripts/fetch_snapshots.py`

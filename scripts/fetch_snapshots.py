@@ -8,12 +8,18 @@ This script is intentionally "dumb": it does no summarization or AI
 processing. It just gets a clean, comparable text snapshot of each page
 so that `git diff` between runs is meaningful. Any actual summarizing of
 *changes* happens later, in diff_and_notify.py, only on the diff itself.
+
+Also writes status/last-run.json every run (success/failure per document),
+so a weekly job can spot fetch failures purely from git history instead of
+needing network access to the GitHub Actions API.
 """
 import io
+import json
 import sys
 import time
 
 import re
+from datetime import datetime, timezone
 from urllib.parse import urljoin
 
 import requests
@@ -257,6 +263,7 @@ def extract_docc_json_text(data: dict) -> str:
 
 def main() -> int:
     ok = True
+    doc_results = []
     for name, (url, path, kind) in DOCUMENTS.items():
         print(f"Fetching {name}: {url}")
         try:
@@ -285,16 +292,17 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001
             print(f"  ERROR: {e}", file=sys.stderr)
             ok = False
+            doc_results.append({"name": name, "ok": False, "error": str(e)})
             continue
 
         if len(text) < 500:
-            print(
-                f"  WARNING: extracted text for {name} looks suspiciously "
-                f"short ({len(text)} chars) - not overwriting snapshot, "
-                f"needs a human look at the page/extractor.",
-                file=sys.stderr,
+            error = (
+                f"extracted text looks suspiciously short ({len(text)} chars) - "
+                f"not overwriting snapshot, needs a human look at the page/extractor"
             )
+            print(f"  WARNING: {error}", file=sys.stderr)
             ok = False
+            doc_results.append({"name": name, "ok": False, "error": error})
             continue
 
         # IMPORTANT: do not embed a fetch timestamp in the file itself -
@@ -305,6 +313,23 @@ def main() -> int:
             f.write(f"<!-- source: {source_url} -->\n\n")
             f.write(text)
         print(f"  wrote {path} ({len(text)} chars)")
+        doc_results.append({"name": name, "ok": True, "error": None})
+
+    # Written every run (unlike the snapshots, which only change when their
+    # content does) so the weekly summary job can tell "nothing changed"
+    # apart from "the fetch itself failed" purely from git history, without
+    # needing network access to the GitHub Actions API.
+    with open("status/last-run.json", "w", encoding="utf-8") as f:
+        json.dump(
+            {
+                "run_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "ok": ok,
+                "documents": doc_results,
+            },
+            f,
+            indent=2,
+        )
+        f.write("\n")
 
     return 0 if ok else 1
 
