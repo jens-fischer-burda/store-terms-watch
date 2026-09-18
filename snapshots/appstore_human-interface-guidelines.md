@@ -15,6 +15,8 @@ Accessibility
 Accessible user interfaces empower everyone to have a great experience with your app or game.
 App icons
 A unique, memorable icon expresses your app’s or game’s purpose and personality and helps people recognize it at a glance.
+Apple In-App Purchase
+People can use Apple In-App Purchase to pay for digital goods and services, like premium content and subscriptions, securely within your app.
 Branding
 Apps and games express their unique brand identity in ways that make them instantly recognizable while feeling at home on the platform and giving people a consistent experience.
 Color
@@ -39,16 +41,12 @@ Layout
 A consistent layout that adapts across display sizes, orientations, and multitasking configurations helps people understand and enjoy your app or game on all their devices.
 Materials
 A material is a visual effect that creates a sense of depth, layering, and hierarchy between foreground and background elements.
-Menus
-A menu reveals its options when people interact with it, making it a space-efficient way to present commands in your app or game.
 Patterns
 Get design guidance for supporting common user actions, tasks, and experiences.
 SharePlay
 SharePlay lets people experience activities together from anywhere, whether they’re watching a movie, playing a game, or sketching on a whiteboard.
 Siri
 People use Siri to help them with the things they need to find, know, or do every day.
-Snippets
-When someone performs a task with Siri or an App Shortcut, a snippet shows the result or asks for confirmation.
 Technologies
 Discover the Apple technologies, features, and services you can integrate into your app or game.
 Typography
