@@ -29,12 +29,21 @@ To help your app approval go as smoothly as possible, review the common missteps
 Learn more about App Store Improvements
 .
 Make sure you:
-Test your app for crashes and bugs
-Ensure that all app information and metadata is complete and accurate
-Update your contact information in case App Review needs to reach you
-Provide App Review with full access to your app. If your app includes account-based features, provide either an active demo account or fully-featured demo mode, plus any other hardware or resources that might be needed to review your app (e.g. login credentials or a sample QR code)
-Enable backend services so that theyâre live and accessible during review
-Include detailed explanations of non-obvious features and in-app purchases in the App Review notes, including supporting documentation where appropriate
+Test your app for crashes and bugs. Learn more about
+testing your app on compatible devices
+and
+configuring In‑App Purchases for review
+.
+Ensure that all app information and metadata is complete and accurate.
+Update your contact information in case App Review needs to reach you.
+Provide App Review with full access to your app. If your app includes account-based features, provide either an active demo account or fully-featured demo mode, plus any other hardware or resources that might be needed to review your app (such as login credentials or a sample QR code). Learn more about
+providing information for a complete review
+.
+Enable backend services so that theyâre live and accessible during review.
+Include detailed explanations of non-obvious features and in-app purchases in the App Review notes, including supporting documentation where appropriate.
+Provide
+required documentation for apps and features that require regulatory approval
+.
 Check whether your app follows guidance in other documentation, such as:
 Developer Documentation
 SwiftUI
@@ -44,6 +53,7 @@ App extensions
 Optimizing Your Appâs Data for iCloud Backup
 Apple File System
 App Store Connect Help
+App Review Help
 Developer Account Help
 Design Guidelines
 Human Interface Guidelines
@@ -75,13 +85,13 @@ False information and features, including inaccurate device data or trick/joke f
 1.1.7
 Harmful concepts which capitalize or seek to profit on recent or current events, such as violent conflicts, terrorist attacks, and epidemics.
 1.2 User-Generated Content
-Apps with user-generated content present particular challenges, ranging from intellectual property infringement to anonymous bullying. To prevent abuse, apps with user-generated content or social networking services must include:
+Apps that enable users to create, generate, upload, share, or otherwise contribute content present particular challenges, including intellectual property infringement, nonconsensual intimate imagery, and anonymous bullying. This includes social media, user-generated content platforms, and AI content creation apps. To prevent abuse, such apps must include:
 A method for filtering objectionable material from being posted to the app
 A mechanism to report offensive content and timely responses to concerns
 The ability to block abusive users from the service
 Published contact information so users can easily reach you
-Apps with user-generated content or services that end up being used primarily for pornographic content, Chatroulette-style experiences, random or anonymous chat, objectification of real people (e.g. âhot-or-notâ voting), making physical threats, or bullying do not belong on the App Store and may be removed without notice. If your app includes user-generated content from a web-based service, it may display incidental mature âNSFWâ content, provided that the content is hidden by default and only displayed when the user turns it on via your website.
-It is your responsibility to remove content that violates this guideline, your terms of service, or your community standards. If we find such content, we will ask you to remove it, and provide a plan to improve your compliance with this guideline. Based on your response, your app may be removed from the App Store until you can demonstrate improvements that bring your app into compliance. Egregious or repeated behavior is grounds for immediate removal of your app from the App Store, and from the Apple Developer Program.
+Apps with user-generated content or services that end up being used primarily for pornographic content, Chatroulette-style experiences, random or anonymous chat, objectification of real people (such as âhot-or-notâ voting), making physical threats, or bullying do not belong on the App Store and may be removed without notice. If your app includes user-generated content from a web-based service, it may display incidental mature âNSFWâ content, provided that the content is hidden by default and only displayed when the user turns it on via your website.
+It is your responsibility to remove content that violates this guideline, your terms of service, or your community standards. Developers who fail to implement appropriate safeguards or fail to remediate identified violations after notice may be considered in violation of the Developer Code of Conduct. If we find such content, we will ask you to remove it, and provide a plan to improve your compliance with this guideline. Based on your response, your app may be removed from the App Store until you can demonstrate improvements that bring your app into compliance. Egregious or repeated behavior is grounds for immediate removal of your app from the App Store, and from the Apple Developer Program.
 1.2.1 Creator Content
 Apps which feature content from a specific community of users called âcreatorsâ are a great opportunity if properly moderated. These apps present a singular, unified experience for customers to interact with various kinds of creator content. They offer tools and programs to help this community of non-developer creators to author, share, and monetize user-generated experiences. These experiences must not change the core features and functionality of the native appârather, they add content to those structured experiences. These experiences are not native âappsâ coded by developersâthey are content within the app itself and are treated as user-generated content by App Review. Such creator content may include video, articles, audio, and even casual games. The App Store supports apps offering such user-generated content so long as they follow all Guidelines, including Guideline 1.2 for moderating user-generated content and Guideline 3.1.1 for payments and in-app purchases. You should communicate to users which content requires additional purchases.
 (a)
@@ -132,7 +142,7 @@ Accurate Metadata
 Customers should know what theyâre getting when they download or buy your app, so make sure all your app metadata, including privacy information, your app description, screenshots, and previews accurately reflect the appâs core experience and remember to keep them up-to-date with new versions.
 2.3.1
 (a)
-Donât include any hidden, dormant, or undocumented features in your app; your appâs functionality should be clear to end users and App Review. All new features, functionality, and product changes must be described with specificity in the Notes for Review section of App Store Connect (generic descriptions will be rejected) and accessible for review. Similarly, marketing your app in a misleading way, such as by promoting content or services that it does not actually offer (e.g. iOS-based virus and malware scanners) or promoting a false price, whether within or outside of the App Store, is grounds for removal of your app from the App Store or a block from installing via alternative distribution and termination of your developer account.
+All new features, functionality, and product changes must be described with specificity in the Notes for Review section of App Store Connect (generic descriptions will be rejected) and accessible for review. Similarly, marketing your app in a misleading way, such as by promoting content or services that it does not actually offer (such as iOS-based virus and malware scanners) or promoting a false price, whether within or outside of the App Store, is grounds for removal of your app from the App Store or a block from installing via alternative distribution and termination of your developer account.
 (b)
 Egregious or repeated behavior is grounds for removal from the Apple Developer Program. We work hard to make the App Store a trustworthy ecosystem and expect our app developers to follow suit; if youâre dishonest, we donât want to do business with you.
 2.3.2
@@ -142,7 +152,9 @@ Promoting Your In-App Purchases
 SKPaymentTransactionObserver method
 so that customers can seamlessly complete the purchase when your app launches.
 2.3.3
-Screenshots should show the app in use, and not merely the title art, login page, or splash screen. They may also include text and image overlays (e.g. to demonstrate input mechanisms, such as an animated touch point or Apple Pencil) and show extended functionality on device, such as Touch Bar.
+Screenshots should show the app in use, and not merely the title art, login page, or splash screen. They may also include text and image overlays (for example, to demonstrate input mechanisms, such as an animated touch point or Apple Pencil) and show extended functionality on device, such as Touch Bar. Learn more about
+showing your app in use in screenshots
+.
 2.3.4
 Previews are a great way for customers to see what your app looks like and what it does. To ensure people understand what theyâll be getting with your app, previews may only use video screen captures of the app itself. Stickers and iMessage extensions may show the user experience in the Messages app. You can add narration and video or textual overlays to help explain anything that isnât clear from the video alone.
 2.3.5
@@ -150,7 +162,7 @@ Select the most appropriate category for your app, and check out the
 App Store Category Definitions
 if you need help. If youâre way off base, we may change the category for you.
 2.3.6
-Answer the age rating questions in App Store Connect honestly so that your app aligns properly with parental controls. If your app is mis-rated, customers might be surprised by what they get, or it could trigger an inquiry from government regulators. If your app includes media that requires the display of content ratings or warnings (e.g. films, music, games, etc.), you are responsible for complying with local requirements in each territory where your app is available.
+Answer the age rating questions in App Store Connect honestly so that your app aligns properly with parental controls. If your app is mis-rated, customers might be surprised by what they get, or it could trigger an inquiry from government regulators. If your app includes media that requires the display of content ratings or warnings (such as films, music, games, etc.), you are responsible for complying with local requirements in each territory where your app is available.
 2.3.7
 Choose a unique app name, assign keywords that accurately describe your app, and donât try to pack any of your metadata with trademarked terms, popular app names, pricing information, or other irrelevant phrases just to game the system. App names must be limited to 30 characters. Metadata such as app names, subtitles, screenshots, and previews should not include prices, terms, or descriptions that are not specific to the metadata type. App subtitles are a great way to provide additional context for your app; they must follow our standard metadata rules and should not include inappropriate content, reference other apps, or make unverifiable product claims. Apple may modify inappropriate keywords at any time or take other appropriate steps to prevent abuse.
 2.3.8
@@ -160,13 +172,17 @@ You are responsible for securing the rights to use all materials in your app ico
 2.3.10
 Make sure your app is focused on the experience of the Apple platforms it supports, and donât include names, icons, or imagery of other mobile platforms or alternative app marketplaces in your app or metadata, unless there is specific, approved interactive functionality. Make sure your app metadata is focused on the app itself and its experience. Donât include irrelevant information.
 2.3.11
-Apps you submit for pre-order on the App Store must be complete and deliverable as submitted. Ensure that the app you ultimately release is not materially different from what you advertise while the app is in a pre-order state. If you make material changes to the app (e.g. change business models), you should restart your pre-order sales.
+Apps you submit for pre-order on the App Store must be complete and deliverable as submitted. Ensure that the app you ultimately release is not materially different from what you advertise while the app is in a pre-order state. If you make material changes to the app (such as changing business models), you should restart your pre-order sales.
 2.3.12
 Apps must clearly describe new features and product changes in their âWhatâs Newâ text. Simple bug fixes, security updates, and performance improvements may rely on a generic description, but more significant changes must be listed in the notes.
 2.3.13
 In-app events are timely events that happen within your app. To feature your event on the App Store, it must fall within an event type provided in App Store Connect. All event metadata must be accurate and pertain to the event itself, rather than the app more generally. Events must happen at the times and dates you select in App Store Connect, including across multiple storefronts. You may monetize your event so long as you follow the rules set forth in Section 3 on Business. And your event deep link must direct users to the proper destination within your app. Read
 In-App Events
 for detailed guidance on acceptable event metadata and event deep links.
+2.3.14
+Creative assets allow you to highlight the value of your app in new ways compared to app-in-use screenshots and preview videos, and can be used across the App Store, including the product page header and in search results. Creative assets must pertain to your appâs content and functionality or overarching brand, follow standard metadata guidelines, and be appropriate for all audiences. They should not include inappropriate content, references to other apps with an intent to mislead, unverifiable product claims, or specific or discounted pricing information. Read
+App Store asset best practices
+for detailed guidance on acceptable recommendations.
 2.4 Hardware Compatibility
 2.4.1
 To ensure people get the most out of your app, iPhone apps should run on iPad whenever possible. We encourage you to consider building apps so customers can use them on
@@ -183,7 +199,7 @@ Apps distributed via the Mac App Store have some additional requirements to ke
 (i)
 They must be appropriately sandboxed, and follow
 macOS File System Documentation
-. They should also only use the appropriate macOS APIs for modifying user data stored by other apps (e.g. bookmarks, Address Book, or Calendar entries).
+. They should also only use the appropriate macOS APIs for modifying user data stored by other apps (such as bookmarks, Address Book, or Calendar entries).
 (ii)
 They must be packaged and submitted using technologies provided in Xcode; no third-party installers allowed. They must also be self-contained, single app installation bundles and cannot install code or resources in shared locations.
 (iii)
@@ -197,7 +213,7 @@ They may not present a license screen at launch, require license keys, or implem
 (vii)
 They must use the Mac App Store to distribute updates; other update mechanisms are not allowed.
 (viii)
-Apps should run on the currently shipping OS and may not use deprecated or optionally installed technologies (e.g. Java)
+Apps should run on the currently shipping OS and may not use deprecated or optionally installed technologies (such as Java).
 (ix)
 Apps must contain all language and localization support in a single app bundle.
 2.5 Software Requirements
@@ -232,9 +248,9 @@ Apps integrating SiriKit and Shortcuts should only sign up for intents they can 
 (ii)
 Ensure that the vocabulary and phrases in your plist pertains to your app and the Siri functionality of the intents the app has registered for. Aliases must relate directly to your app or company name and should not be generic terms or include third-party app names or services.
 (iii)
-Resolve the Siri request or Shortcut in the most direct way possible and do not insert ads or other marketing between the request and its fulfillment. Only request a disambiguation when required to complete the task (e.g. asking the user to specify a particular type of workout).
+Resolve the Siri request or Shortcut in the most direct way possible and do not insert ads or other marketing between the request and its fulfillment. Only request a disambiguation when required to complete the task (such as asking the user to specify a particular type of workout).
 2.5.12
-Apps using CallKit or including an SMS Fraud Extension should only block phone numbers that are confirmed spam. Apps that include call-, SMS-, and MMS- blocking functionality or spam identification must clearly identify these features in their marketing text and explain the criteria for their blocked and spam lists. You may not use the data accessed via these tools for any purpose not directly related to operating or improving your app or extension (e.g. you may not use, share, or sell it for tracking purposes, creating user profiles, etc.).
+Apps using CallKit or including an SMS Fraud Extension should only block phone numbers that are confirmed spam. Apps that include call-, SMS-, and MMS- blocking functionality or spam identification must clearly identify these features in their marketing text and explain the criteria for their blocked and spam lists. You may not use the data accessed via these tools for any purpose not directly related to operating or improving your app or extension (for example, you may not use, share, or sell it for tracking purposes, create user profiles, etc.).
 2.5.13
 Apps using facial recognition for account authentication must use
 LocalAuthentication
@@ -252,7 +268,9 @@ Apps that support Matter must use Appleâs support framework for Matter to i
 Connectivity Standards Alliance
 for the platform it runs on.
 2.5.18
-Display advertising should be limited to your main app binary, and should not be included in extensions, App Clips, widgets, notifications, keyboards, watchOS apps, etc. Ads displayed in an app must be appropriate for the appâs age rating, allow the user to see all information used to target them for that ad (without requiring the user to leave the app), and may not engage in targeted or behavioral advertising based on sensitive user data such as health/medical data (e.g. from the HealthKit APIs), school and classroom data (e.g. from ClassKit), or from kids (e.g. from apps in the App Storeâs Kids Category), etc. Interstitial ads or ads that interrupt or block the user experience must clearly indicate that they are an ad, must not manipulate or trick users into tapping into them, and must provide easily accessible and visible close/skip buttons large enough for people to easily dismiss the ad. Apps that contain ads must also include the ability for users to report any inappropriate or age-inappropriate ads.
+Display advertising should be limited to your main app binary, and should not be included in extensions, App Clips, widgets, notifications, keyboards, watchOS apps, etc. Ads displayed in an app must be appropriate for the appâs age rating, allow the user to see all information used to target them for that ad (without requiring the user to leave the app), and may not engage in targeted or behavioral advertising based on sensitive user data such as health/medical data (such as from the HealthKit APIs), school and classroom data (such as from ClassKit), or from kids (such as from apps in the App Storeâs Kids Category), etc. Interstitial ads or ads that interrupt or block the user experience must clearly indicate that they are an ad, must not manipulate or trick users into tapping into them, and must provide easily accessible and visible close/skip buttons large enough for people to easily dismiss the ad. Apps that contain ads must also include the ability for users to report any inappropriate or age-inappropriate ads.
+2.5.19
+Donât include any hidden, dormant, or undocumented features in your app; your appâs functionality should be clear to end users and App Review. Attempting to hide undocumented features in your app binary, such as through code obfuscation or other methods, is grounds for removal of your app from the App Store and termination of your developer account.
 3. Business
 There are many ways to monetize your app on the App Store. If your business model isnât obvious, make sure to explain in its metadata and App Review notes. If we canât understand how your app works or your in-app purchases arenât immediately obvious, it will delay your review and may trigger a rejection. And while pricing is up to you, we wonât distribute apps and in-app purchase items that are clear rip-offs. Weâll reject expensive apps that try to cheat users with irrationally high prices.
 If we find that you have attempted to manipulate reviews, inflate your chart rankings with paid, incentivized, filtered, or fake feedback, or engage with third-party services to do so on your behalf, we will take steps to preserve the integrity of the App Store, which may include expelling you from the Apple Developer Program.
@@ -272,25 +290,22 @@ DeviceCheck
 .
 Apps may use in-app purchase to sell and sell services related to non-fungible tokens (NFTs), such as minting, listing, and transferring. Apps may allow users to view their own NFTs, provided that NFT ownership does not unlock features or functionality within the app. Apps may allow users to browse NFT collections owned by others, provided that, except for apps on the United States storefront, the apps may not include buttons, external links, or other calls to action that direct customers to purchasing mechanisms other than in-app purchase.
 3.1.1(a) Link to Other Purchase Methods:
-Developers may apply for entitlements to provide a link in their app to a website the developer owns or maintains responsibility for in order to purchase digital content or services. These entitlements are not required for developers to include buttons, external links, or other calls to action in their United States storefront apps. Please see additional details below.
-StoreKit External Purchase Link Entitlements: apps on the App Store in specific regions may offer in-app purchases and also use a StoreKit External Purchase Link Entitlement to include a link to the developerâs website that informs users of other ways to purchase digital goods or services. Learn more about these
+Developers may apply for entitlements to provide a link in their app to a permitted destination in order to purchase digital content or services. These entitlements are not required for developers to include buttons, external links, or other calls to action in their United States storefront apps. Please see additional details below.
+StoreKit External Purchase Link Entitlements: apps on the App Store in specific regions may offer in-app purchases and also use a StoreKit External Purchase Link Entitlement or, where permitted, a Music Streaming Services Entitlement to include a link to a permitted destination that informs users of other ways to purchase digital goods or services. Approved destinations may vary by region. Learn more about these
 entitlements
-. In accordance with the entitlement agreements, the link may inform users about where and how to purchase those in-app purchase items, and the fact that such items may be available for a comparatively lower price. The entitlements are limited to use only in the iOS or iPadOS App Store in specific storefronts. In all other storefronts, except for the United States storefront, where this prohibition does not apply, apps and their metadata may not include buttons, external links, or other calls to action that direct customers to purchasing mechanisms other than in-app purchase.
-Music Streaming Services Entitlements: music streaming apps in specific regions can use Music Streaming Services Entitlements to include a link (which may take the form of a buy button) to the developerâs website that informs users of other ways to purchase digital music content or services. These entitlements also permit music streaming app developers to invite users to provide their email address for the express purpose of sending them a link to the developerâs website to purchase digital music content or services. Learn more about these
-entitlements
-. In accordance with the entitlement agreements, the link may inform users about where and how to purchase those in-app purchase items, and the price of such items. The entitlements are limited to use only in the iOS or iPadOS App Store in specific storefronts. In all other storefronts, streaming music apps and their metadata may not include buttons, external links, or other calls to action that direct customers to purchasing mechanisms other than in-app purchase.
+. In accordance with the entitlement agreements, the link may inform users about where and how to purchase those in-app purchase items, and the fact that such items may be available for a comparatively lower price. The entitlements are limited to use only in specific storefronts of the App Store, and only on certain platforms in each of those storefronts. In all other storefronts, except for the United States storefront, where this prohibition does not apply, apps and their metadata may not include buttons, external links, or other calls to action that direct customers to purchasing mechanisms other than in-app purchase.
 If your app engages in misleading marketing practices, scams, or fraud in relation to the entitlement, your app will be removed from the App Store and you may be removed from the Apple Developer Program.
 3.1.2 Subscriptions:
 Apps may offer auto-renewable in-app purchase subscriptions, regardless of category on the App Store. When incorporating auto-renewable subscriptions into your app, be sure to follow the guidelines below.
 3.1.2(a) Permissible uses:
 If you offer an auto-renewable subscription, you must provide ongoing value to the customer, and the subscription period must last at least seven days and be available across all of the userâs devices. While the following list is not exhaustive, examples of appropriate subscriptions include: new game levels; episodic content; multiplayer support; apps that offer consistent, substantive updates; access to large collections of, or continually updated, media content; software as a service (âSAASâ); and cloud support. In addition:
-Subscriptions may be offered alongside Ã  la carte offerings (e.g. you may offer a subscription to an entire library of films as well the purchase or rental of a single movie).
+Subscriptions may be offered alongside Ã  la carte offerings (for example, you may offer a subscription to an entire library of films as well the purchase or rental of a single movie).
 Games offered in a streaming game service subscription may offer a single subscription that is shared across third-party apps and services; however, they must be downloaded directly from the App Store, must be designed to avoid duplicate payment by a subscriber, and should not disadvantage non-subscriber customers.
 Subscriptions must work on all of the userâs devices where the app is available. Learn more about
 sharing a subscription across your apps
 .
 As with all apps, those offering subscriptions should allow a user to get what theyâve paid for without performing additional tasks, such as posting on social media, uploading contacts, checking in to the app a certain number of times, etc.
-Subscriptions may include consumable credits, gems, in-game currencies, etc., and you may offer subscriptions that include access to discounted consumable goods (e.g. a platinum membership that exposes gem-packs for a reduced price).
+Subscriptions may include consumable credits, gems, in-game currencies, etc., and you may offer subscriptions that include access to discounted consumable goods (such as a platinum membership that exposes gem-packs for a reduced price).
 If you are changing your existing app to a subscription-based business model, you should not take away the primary functionality existing users have already paid for. For example, let customers who have already purchased a âfull game unlockâ continue to access the full game after you introduce a subscription model for new customers.
 Auto-renewable subscription apps may offer a free trial period to customers by providing the relevant information set forth in App Store Connect.
 Learn more about providing subscription offers.
@@ -321,18 +336,18 @@ If your app enables the purchase of real-time person-to-person services between 
 3.1.3(e) Goods and Services Outside of the App:
 If your app enables people to purchase physical goods or services that will be consumed outside of the app, you must use purchase methods other than in-app purchase to collect those payments, such as Apple Pay or traditional credit card entry.
 3.1.3(f) Free Stand-alone Apps:
-Free apps acting as a stand-alone companion to a paid web based tool (i.e. VoIP, Cloud Storage, Email Services, Web Hosting) do not need to use in-app purchase, provided there is no purchasing inside the app, or calls to action for purchase outside of the app.
+Free apps acting as a stand-alone companion to a paid web-based tool for VoIP, Cloud Storage, Email Services, or Web Hosting do not need to use in-app purchase, provided there is no purchasing inside the app, or calls to action for purchase outside of the app.
 3.1.3(g) Advertising Management Apps:
 Apps for the sole purpose of allowing advertisers (persons or companies that advertise a product, service, or event) to purchase and manage advertising campaigns across media types (television, outdoor, websites, apps, etc.) do not need to use in-app purchase. These apps are intended for campaign management purposes and do not display the advertisements themselves. Digital purchases for content that is experienced or consumed in an app, including buying advertisements to display in the same app (such as sales of âboostsâ for posts in a social media app) must use in-app purchase.
 3.1.4 Hardware-Specific Content:
-In limited circumstances, such as when features are dependent upon specific hardware to function, the app may unlock that functionality without using in-app purchase (e.g. an astronomy app that adds features when synced with a telescope). App features that work in combination with an approved physical product (such as a toy) on an
+In limited circumstances, such as when features are dependent upon specific hardware to function, the app may unlock that functionality without using in-app purchase (such as an astronomy app that adds features when synced with a telescope). App features that work in combination with an approved physical product (such as a toy) on an
 optional
 basis may unlock functionality without using in-app purchase, provided that an in-app purchase option is available as well. You may not, however, require users to purchase unrelated products or engage in advertising or marketing activities to unlock app functionality.
 3.1.5 Cryptocurrencies:
 (i)
 Wallets: Apps may facilitate virtual currency storage, provided they are offered by developers enrolled as an organization.
 (ii)
-Mining: Apps may not mine for cryptocurrencies unless the processing is performed off device (e.g. cloud-based mining).
+Mining: Apps may not mine for cryptocurrencies unless the processing is performed off device (such as cloud-based mining).
 (iii)
 Exchanges: Apps may facilitate transactions or transmissions of cryptocurrency on an approved exchange, provided they are offered only in countries or regions where the app has appropriate licensing and permissions to provide a cryptocurrency exchange.
 (iv)
@@ -345,9 +360,9 @@ The lists below are not exhaustive, and your submission may trigger a change or 
 (i)
 Displaying your own apps for purchase or promotion within your app, provided the app is not merely a catalog of your apps.
 (ii)
-Displaying or recommending a collection of third-party apps that are designed for a specific approved need (e.g. health management, aviation, accessibility). Your app should provide robust editorial content so that it doesnât seem like a mere storefront.
+Displaying or recommending a collection of third-party apps that are designed for a specific approved need (such as health management, aviation, accessibility). Your app should provide robust editorial content so that it doesnât seem like a mere storefront.
 (iii)
-Disabling access to specific approved rental content (e.g. films, television programs, music, books) after the rental period has expired; all other items and services may not expire.
+Disabling access to specific approved rental content (such as films, television programs, music, books) after the rental period has expired; all other items and services may not expire.
 (iv)
 Wallet passes can be used to make or receive payments, transmit offers, or offer identification (such as movie tickets, coupons, and VIP credentials). Other uses may result in the rejection of the app and the revocation of Wallet credentials.
 (v)
@@ -376,11 +391,11 @@ Intentionally omitted.
 (vii)
 Artificially manipulating a userâs visibility, status, or rank on other services unless permitted by that serviceâs Terms and Conditions.
 (viii)
-Apps that facilitate binary options trading are not permitted on the App Store. Consider a web app instead. Apps that facilitate trading in contracts for difference (âCFDsâ) or other derivatives (e.g. FOREX) must be properly licensed in all jurisdictions where the service is available.
+Apps that facilitate binary options trading are not permitted on the App Store. Consider a web app instead. Apps that facilitate trading in contracts for difference (âCFDsâ) or other derivatives (such as FOREX) must be properly licensed in all jurisdictions where the service is available.
 (ix)
 Apps offering personal loans must clearly and conspicuously disclose all loan terms, including but not limited to equivalent maximum Annual Percentage Rate (APR) and payment due date. Loan apps may not charge a maximum APR higher than 36%, including costs and fees, and may not require repayment in full in 60 days or less.
 (x)
-Apps must not force users to rate the app, review the app, download other apps, or other store-related actions in order to access functionality, content, or use of the app. Apps may otherwise incentivize users to take specific actions within apps (e.g. completing a level, watching an ad).
+Apps must not force users to rate the app, review the app, download other apps, or other store-related actions in order to access functionality, content, or use of the app. Apps may otherwise incentivize users to take specific actions within apps (such as by completing a level or watching an ad).
 4. Design
 Apple customers place a high value on products that are simple, refined, innovative, and easy to use, and thatâs what we want to see on the App Store. Coming up with a great design is up to you, but the following are minimum standards for approval to the App Store. And remember that even after your app has been approved, you should update your app to ensure it remains functional and engaging to new and existing customers. Apps that stop working or offer a degraded experience may be removed from the App Store at any time.
 4.1 Copycats
@@ -390,6 +405,9 @@ Come up with your own ideas. We know you have them, so make yours come to life. 
 Submitting apps which impersonate other apps or services is considered a violation of the Developer Code of Conduct and may result in removal from the Apple Developer Program.
 (c)
 You cannot use another developerâs icon, brand, or product name in your appâs icon or name, without approval from the developer.
+Learn more about
+preventing copycat and impersonation rejections
+.
 4.2 Minimum Functionality
 Your app should include features, content, and UI that elevate it beyond a repackaged website. If your app is not particularly useful, unique, or âapp-like,â it doesnât belong on the App Store. If your App doesnât provide some sort of lasting entertainment value or adequate utility, it may not be accepted. Apps that are simply a song or movie should be submitted to the iTunes Store. Apps that are simply a book or game guide should be submitted to the Apple Books Store.
 4.2.1
@@ -436,14 +454,14 @@ and should include some functionality, such as help screens and settings interfa
 4.4.1
 Keyboard extensions have some additional rules.
 They must:
-Provide keyboard input functionality (e.g. typed characters);
+Provide keyboard input functionality (such as typed characters);
 Follow Sticker guidelines if the keyboard includes images or emoji;
 Provide a method for progressing to the next keyboard;
 Remain functional without full network access and without requiring full access;
 Collect user activity only to enhance the functionality of the userâs keyboard extension on the iOS device.
 They must not:
 Launch other apps besides Settings; or
-Repurpose keyboard buttons for other behaviors (e.g. holding down the âreturnâ key to launch the camera).
+Repurpose keyboard buttons for other behaviors (such as holding down the âreturnâ key to launch the camera).
 4.4.2
 Safari extensions must run on the current version of Safari on the relevant Apple operating system. They may not interfere with System or Safari UI elements and must never include malicious or misleading content or code. Violating this rule will lead to removal from the Apple Developer Program. Safari extensions should not claim access to more websites than strictly necessary to function.
 4.4.3
@@ -451,15 +469,15 @@ Intentionally omitted.
 4.5
 Apple Sites and Services
 4.5.1
-Apps may use approved Apple RSS feeds such as the iTunes Store RSS feed, but may not scrape any information from Apple sites (e.g. apple.com, the iTunes Store, App Store, App Store Connect, developer portal, etc.) or create rankings using this information.
+Apps may use approved Apple RSS feeds such as the iTunes Store RSS feed, but may not scrape any information from Apple sites (such as apple.com, the iTunes Store, App Store, App Store Connect, developer portal, etc.) or create rankings using this information.
 4.5.2
 Apple Music
 (i)
-MusicKit on iOS lets users play Apple Music and their local music library natively from your apps and games. When a user provides permission to their Apple Music account, your app can create playlists, add songs to their library, and play any of the millions of songs in the Apple Music catalog. Users must initiate the playback of an Apple Music stream and be able to navigate using standard media controls such as âplay,â âpause,â and âskip.â Moreover, your app may not require payment or indirectly monetize access to the Apple Music service (e.g. in-app purchase, advertising, requesting user info, etc.). Do not download, upload, or enable sharing of music files sourced from the MusicKit APIs, except as explicitly permitted in
+MusicKit on iOS lets users play Apple Music and their local music library natively from your apps and games. When a user provides permission to their Apple Music account, your app can create playlists, add songs to their library, and play any of the millions of songs in the Apple Music catalog. Users must initiate the playback of an Apple Music stream and be able to navigate using standard media controls such as âplay,â âpause,â and âskip.â Moreover, your app may not require payment or indirectly monetize access to the Apple Music service (such as in-app purchase, advertising, requesting user info, etc.). Do not download, upload, or enable sharing of music files sourced from the MusicKit APIs, except as explicitly permitted in
 MusicKit
 documentation.
 (ii)
-Using the MusicKit APIs is not a replacement for securing the licenses you might need for a deeper or more complex music integration. For example, if you want your app to play a specific song at a particular moment, or to create audio or video files that can be shared to social media, youâll need to contact rights-holders directly to get their permission (e.g. synchronization or adaptation rights) and assets. Cover art and other metadata may only be used in connection with music playback or playlists (including screenshots displaying your appâs functionality), and should not be used in any marketing or advertising without getting specific authorization from rights-holders. Make sure to follow the
+Using the MusicKit APIs is not a replacement for securing the licenses you might need for a deeper or more complex music integration. For example, if you want your app to play a specific song at a particular moment, or to create audio or video files that can be shared to social media, youâll need to contact rights-holders directly to get their permission (such as synchronization or adaptation rights) and assets. Cover art and other metadata may only be used in connection with music playback or playlists (including screenshots displaying your appâs functionality), and should not be used in any marketing or advertising without getting specific authorization from rights-holders. Make sure to follow the
 Apple Music Identity Guidelines
 when integrating Apple Music services in your app.
 (iii)
@@ -515,7 +533,7 @@ Monetizing Built-In Capabilities
 You may not monetize built-in capabilities provided by the hardware or operating system, such as Push Notifications, the camera, or the gyroscope; or Apple services and technologies, such as Apple Music access, iCloud storage, or Screen Time APIs.
 5.
 Legal
-Apps must comply with all legal requirements in any location where you make them available (if youâre not sure, check with a lawyer). We know this stuff is complicated, but it is your responsibility to understand and make sure your app conforms with all local laws, not just the guidelines below. And of course, apps that solicit, promote, or encourage criminal or clearly reckless behavior will be rejected. In extreme cases, such as apps that are found to facilitate human trafficking and/or the exploitation of children, appropriate authorities will be notified.
+Apps must comply with all legal requirements in any location where you make them available (if youâre not sure, check with a lawyer). We know this stuff is complicated, but it is your responsibility to understand and make sure your app conforms with all local laws, not just the guidelines below. And of course, apps that solicit, promote, or encourage criminal or clearly reckless behavior will be rejected. In extreme cases, such as apps that are found to facilitate human trafficking and/or the exploitation of children, appropriate authorities will be notified and the apps will be removed from the App Store and blocked from alternative distribution.
 5.1
 Privacy
 Protecting user privacy is paramount in the Apple ecosystem, and you should use care when handling personal data to ensure youâve complied with
@@ -531,7 +549,9 @@ Identify what data, if any, the app/service collects, how it collects that data,
 Confirm that any third party with whom an app shares user data (in compliance with these Guidelines)âsuch as analytics tools, advertising networks and third-party SDKs, as well as any parent, subsidiary or other related entities that will have access to user dataâwill provide the same or equal protection of user data as stated in the appâs privacy policy and required by these Guidelines.
 Explain its data retention/deletion policies and describe how a user can revoke consent and/or request deletion of the userâs data.
 (ii) Permission:
-Apps that collect user or usage data must secure user consent for the collection, even if such data is considered to be anonymous at the time of or immediately following collection. Paid functionality must not be dependent on or require a user to grant access to this data. Apps must also provide the customer with an easily accessible and understandable way to withdraw consent. Ensure your purpose strings clearly and completely describe your use of the data. Apps that collect data for a legitimate interest without consent by relying on the terms of the European Unionâs General Data Protection Regulation (âGDPRâ) or similar statute must comply with all terms of that law. Learn more about
+Apps that collect user or usage data must secure user consent for the collection, even if such data is considered to be anonymous at the time of or immediately following collection. Paid functionality must not be dependent on or require a user to grant access to this data. Apps must also provide the customer with an easily accessible and understandable way to withdraw consent. Ensure your purpose strings clearly and completely describe your use of the data. Learn more about
+writing clear purpose strings
+. Apps that collect data for a legitimate interest without consent by relying on the terms of the European Unionâs General Data Protection Regulation (âGDPRâ) or similar statute must comply with all terms of that law. Learn more about
 Requesting Permission
 .
 (iii) Data Minimization:
@@ -541,7 +561,7 @@ Apps must respect the userâs permission settings and not attempt to manipul
 (v) Account Sign-In:
 If your app doesnât include significant account-based features, let people use it without a login. If your app supports account creation, you must also
 offer account deletion within the app
-. Apps may not require users to enter personal information to function, except when directly relevant to the core functionality of the app or required by law. If your core app functionality is not related to a specific social network (e.g. Facebook, WeChat, Weibo, X, etc.), you must provide access without a login or via another mechanism. Pulling basic profile information, sharing to the social network, or inviting friends to use the app are not considered core app functionality. The app must also include a mechanism to revoke social network credentials and disable data access between the app and social network from within the app. An app may not store credentials or tokens to social networks off of the device and may only use such credentials or tokens to directly connect to the social network from the app itself while the app is in use.
+. Apps may not require users to enter personal information to function, except when directly relevant to the core functionality of the app or required by law. If your core app functionality is not related to a specific social network (such as Facebook, WeChat, Weibo, X, etc.), you must provide access without a login or via another mechanism. Pulling basic profile information, sharing to the social network, or inviting friends to use the app are not considered core app functionality. The app must also include a mechanism to revoke social network credentials and disable data access between the app and social network from within the app. An app may not store credentials or tokens to social networks off of the device and may only use such credentials or tokens to directly connect to the social network from the app itself while the app is in use.
 (vi)
 Developers that use their apps to surreptitiously discover passwords or other private data will be removed from the Apple Developer Program.
 (vii)
@@ -559,7 +579,7 @@ Unless otherwise permitted by law, you may not use, transmit, or share someoneâ
 Apple Developer Program License Agreement
 ). You must receive explicit permission from users via the App Tracking Transparency APIs to track their activity. Learn more about
 tracking
-. Your app may not require users to enable system functionalities (e.g. push notifications, location services, tracking) in order to access functionality, content, use the app, or receive monetary or other compensation, including but not limited to gift cards and codes. Apps that share user data without user consent or otherwise complying with data privacy laws may be removed from sale and may result in your removal from the Apple Developer Program.
+. Your app may not require users to enable system functionalities (such as push notifications, location services, tracking) in order to access functionality, content, use the app, or receive monetary or other compensation, including but not limited to gift cards and codes. Apps that share user data without user consent or otherwise complying with data privacy laws may be removed from sale and may result in your removal from the Apple Developer Program.
 (ii)
 Data collected for one purpose may not be repurposed without further consent unless otherwise explicitly permitted by law.
 (iii)
@@ -567,9 +587,9 @@ Apps should not attempt to surreptitiously build a user profile based on collect
 (iv)
 Do not use information from Contacts, Photos, or other APIs that access user data to build a contact database for your own use or for sale/distribution to third parties, and donât collect information about which other apps are installed on a userâs device for the purposes of analytics or advertising/marketing.
 (v)
-Do not contact people using information collected via a userâs Contacts or Photos, except at the explicit initiative of that user on an individualized basis; do not include a Select All option or default the selection of all contacts. You must provide the user with a clear description of how the message will appear to the recipient before sending it (e.g. What will the message say? Who will appear to be the sender?).
+Do not contact people using information collected via a userâs Contacts or Photos, except at the explicit initiative of that user on an individualized basis; do not include a Select All option or default the selection of all contacts. You must provide the user with a clear description of how the message will appear to the recipient before sending it (for example, What will the message say? Who will appear to be the sender?).
 (vi)
-Data gathered from the HomeKit API, HealthKit, Clinical Health Records API, MovementDisorder APIs, ClassKit or from depth and/or facial mapping tools (e.g. ARKit, Camera APIs, or Photo APIs) may not be used for marketing, advertising or use-based data mining, including by third parties. Learn more about best practices for implementing
+Data gathered from the HomeKit API, HealthKit, Clinical Health Records API, MovementDisorder APIs, ClassKit or from depth and/or facial mapping tools (such as ARKit, Camera APIs, or Photo APIs) may not be used for marketing, advertising or use-based data mining, including by third parties. Learn more about best practices for implementing
 CallKit
 ,
 HealthKit
@@ -600,7 +620,7 @@ Apps intended primarily for kids should not include third-party analytics or thi
 In limited cases, third-party analytics and third-party advertising may be permitted provided that the services adhere to the same terms set forth in
 Guideline 1.3
 .
-Moreover, apps in the Kids Category or those that collect, transmit, or have the capability to share personal information (e.g. name, address, email, location, photos, videos, drawings, the ability to chat, other personal data, or persistent identifiers used in combination with any of the above) from a minor must include a privacy policy and must comply with all applicable childrenâs privacy statutes. For the sake of clarity, the
+Moreover, apps in the Kids Category or those that collect, transmit, or have the capability to share personal information (such as name, address, email, location, photos, videos, drawings, the ability to chat, other personal data, or persistent identifiers used in combination with any of the above) from a minor must include a privacy policy and must comply with all applicable childrenâs privacy statutes. For the sake of clarity, the
 parental gate requirement
 for the Kidâs Category is generally not the same as securing parental consent to collect personal data under these privacy statutes.
 As a reminder,
@@ -620,15 +640,15 @@ Donât use protected third-party material such as trademarks, copyrighted wo
 5.2.2 Third-Party Sites/Services:
 If your app uses, accesses, monetizes access to, or displays content from a third-party service, ensure that you are specifically permitted to do so under the serviceâs terms of use. Authorization must be provided upon request.
 5.2.3 Audio/Video Downloading:
-Apps should not facilitate illegal file sharing or include the ability to save, convert, or download media from third-party sources (e.g. Apple Music, YouTube, SoundCloud, Vimeo, etc.) without explicit authorization from those sources. Streaming of audio/video content may also violate Terms of Use, so be sure to check before your app accesses those services. Authorization must be provided upon request.
-5.2.4 Apple Endorsements
+Apps should not facilitate illegal file sharing or include the ability to save, convert, or download media from third-party sources (such as Apple Music, YouTube, SoundCloud, Vimeo, etc.) without explicit authorization from those sources. Streaming of audio/video content may also violate Terms of Use, so be sure to check before your app accesses those services. Authorization must be provided upon request.
+5.2.4 Apple Endorsements:
 (a)
 Donât suggest or imply that Apple is a source or supplier of the App, or that Apple endorses any particular representation regarding quality or functionality.
 (b)
 If your app is selected as an âEditorâs Choice,â Apple will apply the badge automatically.
 5.2.5
 Apple Products:
-Donât create an app that appears confusingly similar to an existing Apple product, interface (e.g. Finder), app (such as the App Store, iTunes Store, or Messages) or advertising theme. Apps and extensions, including third-party keyboards and Sticker packs, may not include Apple emoji. Music from iTunes and Apple Music previews may not be used for their entertainment value (e.g. as the background music to a photo collage or the soundtrack to a game) or in any other unauthorized manner. If you provide music previews from iTunes or Apple Music, you must display a link to the corresponding music in iTunes or Apple Music. If your app displays Activity rings, they should not visualize Move, Exercise, or Stand data in a way that resembles the Activity control. The
+Donât create an app that appears confusingly similar to an existing Apple product, interface (such as Finder), app (such as the App Store, iTunes Store, or Messages) or advertising theme. Apps and extensions, including third-party keyboards and Sticker packs, may not include Apple emoji. Music from iTunes and Apple Music previews may not be used for their entertainment value (such as as the background music to a photo collage or the soundtrack to a game) or in any other unauthorized manner. If you provide music previews from iTunes or Apple Music, you must display a link to the corresponding music in iTunes or Apple Music. If your app displays Activity rings, they should not visualize Move, Exercise, or Stand data in a way that resembles the Activity control. The
 Human Interface Guidelines
 have more information on how to use Activity rings. If your app displays Apple Weather data, it should follow the attribution requirements provided in the
 WeatherKit documentation
@@ -642,7 +662,7 @@ Official rules for sweepstakes, contests, and raffles must be presented in the a
 5.3.3
 Apps may not use in-app purchase to purchase credit or currency for use in conjunction with real money gaming of any kind.
 5.3.4
-Apps that offer real money gaming (e.g. sports betting, poker, casino games, horse racing) or lotteries must have necessary licensing and permissions in the locations where the app is used, must be geo-restricted to those locations, and must be free on the App Store. Illegal gambling aids, including card counters, are not permitted on the App Store. Lottery apps must have consideration, chance, and a prize.
+Apps that offer real money gaming (such as sports betting, poker, casino games, horse racing) or lotteries must have necessary licensing and permissions in the locations where the app is used, must be geo-restricted to those locations, and must be free on the App Store. Illegal gambling aids, including card counters, are not permitted on the App Store. Lottery apps must have consideration, chance, and a prize.
 5.4
 VPN Apps
 Apps offering VPN services must utilize the
@@ -673,23 +693,35 @@ Timing
 App Review
 .
 Status Updates
-: The current status of your app will be reflected in App Store Connect, so you can keep an eye on things from there.
+: The current status of your app will be reflected in App Store Connect, so you can keep an eye on things from there. Learn more about
+tracking a submissionâs review status
+.
 Expedite Requests
 : If you have a critical timing issue, you can
 request an expedited review
-. Please respect your fellow developers by seeking expedited review only when you truly need it. If we find youâre abusing this system, we may reject your requests going forward.
+. Please respect your fellow developers by seeking expedited review only when you truly need it. If we find youâre abusing this system, we may reject your requests going forward. Learn more about
+expediting requests
+.
 Release Date
 : If your release date is set for the future, the app will not appear on the App Store until that date, even if it is approved by App Review. And remember that it can take up to 24-hours for your app to appear on all selected storefronts.
 Rejections
-: Our goal is to apply these guidelines fairly and consistently, but nobodyâs perfect. If your app has been rejected and you have questions or would like to provide additional information, please use App Store Connect to communicate directly with the App Review team. This may help get your app on the store, and it can help us improve the App Review process or identify a need for clarity in our policies.
+: Our goal is to apply these guidelines fairly and consistently, but nobodyâs perfect. If your app has been rejected and you have questions or would like to provide additional information, please use App Store Connect to communicate directly with the App Review team. This may help get your app on the store, and it can help us improve the App Review process or identify a need for clarity in our policies. Learn more about
+contacting App Review for help with a submission
+.
 Appeals
 : If you disagree with the outcome of your review, please
 submit an appeal
 . This may help get your app on the store. You may also
 suggest changes to the guidelines
-themselves to help us improve the App Review process or identify a need for clarity in our policies.
+themselves to help us improve the App Review process or identify a need for clarity in our policies. Learn more about
+submitting complete appeals
+and
+suggesting guideline changes
+.
 Bug Fix Submissions
-: For apps that are already on the App Store or alternative distribution, bug fixes will not be delayed over guideline violations except for those related to legal or safety issues. If your app has been rejected, and qualifies for this process, please use App Store Connect to communicate directly with the App Review team indicating that you would like to take advantage of this process and plan to address the issue in your next submission.
+: For apps that are already on the App Store or alternative distribution, bug fixes will not be delayed over guideline violations except for those related to legal or safety issues. If your app has been rejected, and qualifies for this process, please use App Store Connect to communicate directly with the App Review team indicating that you would like to take advantage of this process and plan to address the issue in your next submission. Learn more about
+accepting Bug Fix Submission offers
+.
 Weâre excited to see what you come up with next!
 Last Updated:
-June 8, 2026
+October 16, 2026
