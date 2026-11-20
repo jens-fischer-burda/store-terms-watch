@@ -2901,6 +2901,7 @@ Benin
 Bhutan
 Bosnia and
 								Herzegovina
+Botswana
 Bulgaria
 Canada
 Cambodia**
@@ -2956,6 +2957,7 @@ Poland
 Portugal
 Romania
 Russia***
+Rwanda
 Saudi Arabia
 Serbia
 Senegal
